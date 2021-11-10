@@ -3,6 +3,9 @@ Noah Gluck 486371 noahg957
 
 Hoang Ha 490708 hoangha998
 
+
+approved by Clay Mudter
+
 I. Description.
 
 A website for only Wash U students/employees (with Wash U email) to post products they want to trade/sell (negotiate, set up a meeting with other users through messages). Benefits:

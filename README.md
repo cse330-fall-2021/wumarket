@@ -24,7 +24,7 @@ II. Rubric.
 
 1. Languages/Frameworks used (10 points)
 
-- 10 points: Learn and Use React
+- 10 points: Learn and Use Flask
 
 2. Functionality (60 points)
 

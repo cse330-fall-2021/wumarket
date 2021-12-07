@@ -14,7 +14,6 @@ from flask_mail import Mail, Message
 from flask_socketio import SocketIO
 from flask_socketio import emit, join_room, leave_room
 import time
-from flask_wtf.csrf import CSRFProtect
 
 
 class Config:
@@ -45,13 +44,6 @@ login_manager.anonymous_user = AnonymousUser
 socketio = SocketIO()
 socketio.init_app(app, cors_allowed_origins='*')
 
-#csrf
-# csrf = CSRFProtect()
-# csrf.init_app(csrf)
-# @csrf.error_handler
-# def csrf_error(reason):
-# 	return 'not allowed'
-
 @login_manager.user_loader
 def load_user(id):
 	id = ObjectId(id)
@@ -72,13 +64,8 @@ db = client['WUmarket']
 @app.route('/', methods=['GET'])
 @login_required
 def index():
-<<<<<<< HEAD
 	products = db.Products.find(None)
-	return render_template('main.html', items=products, db=db)
-=======
-	products = db.Products.find({"sold": False})
 	return render_template('main.html', items=products, current_user=current_user, db=db)
->>>>>>> e0dae6532365561a984932263921832007c9fa05
 
 
 @app.route('/my_products', methods=['GET'])
@@ -86,7 +73,7 @@ def index():
 def my_products():
 	products = db.Products.find({"seller_id": ObjectId(current_user.id)})
 	return render_template('my_products.html', items=products, db=db)
-
+	
 @app.route('/favorites', methods=['GET'])
 @login_required
 def favorites():
@@ -104,13 +91,9 @@ def login():
 		hashed_pw = queried_user['password_hash']
 		if check_password_hash(hashed_pw, password):
 			user = User(queried_user)
-			if user.permission == 0:
-				print("must verify email")
-				return redirect(url_for('login'))
-			else:
-				login_user(user)
-				print("Login successfully")
-				return redirect(url_for('index'))
+			login_user(user)
+			print("Login successfully")
+			return redirect(url_for('index'))
 		else:
 			print("Wrong credentials")
 			return redirect(url_for('login'))
@@ -141,14 +124,14 @@ def signup():
 			return "<h1> Email is not a valid WashU email </h1>", 400
 		token = secrets.token_hex(10)
 		pw_hash = generate_password_hash(password)
-		new_user = {
+		new_user = { 
 					 'firstName': firstName,
-					 'lastName': lastName,
+					 'lastName': lastName, 
 					 'password_hash': pw_hash,
 					 'email': email,
 			# the permission is 0 until confirmed
 					 'permission': 0,
-					 'img_link': 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E',
+					 'img_link': '',
 					 'score': 0,
 					 'vote_counts': 0,
 					 'token': token,
@@ -162,10 +145,10 @@ def signup():
 		new_user_id = users.insert_one(new_user).inserted_id
 		msg = Message("Verify your WashU email", recipients=[email])
 		base_url = request.url_root[:-1]
-		msg.body = "Your verification code is: " + token + "\nVisit " +  base_url + url_for('validate') + " to validate."
+		msg.body = "Your verification code is: " + token + "\nVisit" +  base_url + url_for('validate') + " to validate."
 		mail.send(msg)
 		print("create new user with id", new_user_id)
-		return redirect(url_for('validate'))
+		return redirect(url_for('validate')) 
 	return render_template('signup.html', form=form)
 
 @app.route('/validate', methods=['GET', 'POST'])
@@ -181,10 +164,10 @@ def validate():
 				db.Users.update_one({'_id': user.id}, {'$set': {'permission': 1}})
 		else:
 			return  "<h1> Email invalid </h1>", 400
-		return redirect(url_for('index'))
+		return redirect(url_for('index')) 
 	return render_template('validate.html', form=form)
-
-
+				
+		
 
 @app.route('/add_product', methods=['GET', 'POST'])
 @login_required
@@ -194,15 +177,15 @@ def add_product():
 		print("form submitted")
 		cur_time = str(datetime.datetime.now())
 		# to get datetime object, datetime.datetime.strptime(cur_time, '%Y-%m-%d %H:%M:%S.%f')
-		new_product = {
+		new_product = { 
 					 'title': request.form['title'],
 					 'price': request.form['price'],
-					 'image_link': request.form['image_link'],
+					 'image_link': request.form['image_link'], 
 					 'description': request.form['description'],
 					 'tags': [],
 					 'seller_id': current_user.id,
 					 'sold': False,
-					 'post_date': cur_time
+					 'post_date': cur_time 
 					}
 
 		new_product_id = db.Products.insert_one(new_product).inserted_id
@@ -244,18 +227,18 @@ def edit_product(item_id):
 	form = editProductForm()
 	item_id = ObjectId(item_id)
 	product = db.Products.find_one({"_id": item_id})
-
+	
 	if request.method == "POST":
 		print("form submitted")
 		sold = request.form['sold']
 		if (sold == 'True'):
 			sold = True
-		else:
+		else: 
 			sold = False
 		updated_data = {
 		'title': request.form['title'],
 		'price': request.form['price'],
-		'image_link': request.form['image_link'],
+		'image_link': request.form['image_link'], 
 		'description': request.form['description'],
 		'sold': sold
 		}
@@ -268,7 +251,7 @@ def edit_product(item_id):
 		form.image_link.data = product.image_link
 		form.description.data = product.description
 		return render_template('edit_product.html', form=form)
-
+	
 @app.route('/edit_profile/<user_id>', methods=['GET', 'POST'])
 def edit_profile(user_id):
 	form = editProfileForm()
@@ -279,7 +262,7 @@ def edit_profile(user_id):
 		updated_data = {
 		'firstName': request.form['firstName'],
 		'lastName': request.form['lastName'],
-		'img_link': request.form['img_link'],
+		'img_link': request.form['img_link'], 
 		'bio': request.form['bio'],
 		'title' : request.form['title']
 		}
@@ -293,7 +276,7 @@ def edit_profile(user_id):
 		form.bio.data = user.bio
 		form.title.data = user.title
 		return render_template('edit_profile.html', form=form)
-
+ 
 	print("received: ", item_id)
 	print(type(item_id))
 	item_id = ObjectId(item_id)
@@ -321,7 +304,7 @@ def chats():
 	return render_template('chats.html', chat_heads=chat_heads)
 
 
-@app.route('/change_chathead', methods=['POST'])
+@app.route('/change_chathead', methods=['POST']) 
 def change_chathead():
 	print("change chathead called")
 	session['other_id'] = request.form['other_user_id']
@@ -354,7 +337,7 @@ def add_message():
 		cur_id = current_user.id
 		other_id = ObjectId(session['other_id'])
 		newMes = request.form['message']
-		newMesObj = {'message': newMes,
+		newMesObj = {'message': newMes, 
 					'sender_id': cur_id}
 
 		user1_id = other_id
@@ -362,7 +345,7 @@ def add_message():
 		if str(cur_id) >= session['other_id']:
 			user1_id = cur_id
 			user2_id = other_id
-
+		
 		if db.Chats.find_one({'user1_id': user1_id, 'user2_id': user2_id}) is not None:
 			db.Chats.update_one({'user1_id': user1_id,
 									'user2_id': user2_id},
@@ -377,29 +360,6 @@ def add_message():
 								})
 
 	return jsonify(status='Done')
-
-
-@app.route('/redicrect_new_message/<seller_id>', methods=['GET'])
-def redicrect_new_message(seller_id):
-	cur_id = current_user.id
-	other_id = ObjectId(seller_id)
-
-	if cur_id == other_id:
-		return redirect(url_for('index'));
-
-	user1_id = other_id
-	user2_id = cur_id
-	if str(cur_id) >= str(other_id):
-		user1_id = cur_id
-		user2_id = other_id
-
-	if db.Chats.find_one({'user1_id': user1_id, 'user2_id': user2_id}) is None:
-		db.Chats.insert_one({	'user1_id': user1_id,
-								'user2_id': user2_id,
-								'messages': [],
-								'timestamp': time.time()
-							})
-	return redirect(url_for('chats'))
 
 
 @app.route('/private/<path:filename>')

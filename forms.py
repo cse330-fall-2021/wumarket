@@ -34,7 +34,7 @@ class editProductForm(FlaskForm):
 		price = DecimalField(validators=[DataRequired()])
 		image_link = StringField(validators=[DataRequired()])
 		description = TextAreaField(validators=[DataRequired()])
-		sold = SelectField(choices=[('False', 'No'),('True', 'Yes')], validators=[DataRequired()])
+		sold = SelectField(choices=[('True', 'Yes'), ('False', 'No')], validators=[DataRequired()])
 		submit = SubmitField(label="Update")  
 class editProfileForm(FlaskForm):
 		firstName = StringField(validators=[DataRequired()])

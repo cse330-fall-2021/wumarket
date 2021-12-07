@@ -21,18 +21,13 @@
 			<h4 class="item-price"> ${{ item.price }} </h5>
 			<img src={{ item.image_link }}>
 			<div class="item-actions">
-<<<<<<< HEAD
-				<div class="message-button" seller_id="{{item.seller_id}}"> <a class="no-decor" href="{{url_for('redicrect_new_message', seller_id=item.seller_id)}}"> Send Message </a> </div>
-				<div class="favorite-button {{item._id in current_user.favorites}}" name="favorite-action"> Favorite </div>
-=======
-			
+
 				{%if item.seller_id == current_user.id%}
 					<div class="edit-button" name="edit-action"> Edit </div>
 				{%else%}
-					<div class="message-button"> Send Message </div>
+						<div class="message-button" seller_id="{{item.seller_id}}"> <a class="no-decor" href="{{url_for('redicrect_new_message', seller_id=item.seller_id)}}"> Send Message </a> </div>
 				{%endif%}
 					<div class="favorite-button {{item._id in current_user.favorites}}" name="favorite-action"> Favorite </div>
->>>>>>> e0dae6532365561a984932263921832007c9fa05
 			</div>
 			<div class="item-description">
 				{{ item.description }}

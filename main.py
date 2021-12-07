@@ -72,13 +72,8 @@ db = client['WUmarket']
 @app.route('/', methods=['GET'])
 @login_required
 def index():
-<<<<<<< HEAD
 	products = db.Products.find(None)
 	return render_template('main.html', items=products, db=db)
-=======
-	products = db.Products.find({"sold": False})
-	return render_template('main.html', items=products, current_user=current_user, db=db)
->>>>>>> e0dae6532365561a984932263921832007c9fa05
 
 
 @app.route('/my_products', methods=['GET'])

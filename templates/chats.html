@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block links %}
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/css/chats.css">
+{% endblock %}
+
+{% block content %}
+	<section id="chat-section">
+		<div class="messages-list">
+			<h1> People </h1>
+			{% for chat_head in chat_heads %}
+				<div class="message-head" id="{{ chat_head.id }}">
+					<img src="{{ chat_head.img_link }}">
+					<span>
+						<h3> {{ chat_head.name }} </h3>
+					</span>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="messages-display">
+			<h1> Chat Messages </h1>
+			<div id="messages-detail">
+				<div class="no-message">
+					<h3> Please select a person to chat with </h3>
+				</div>
+			</div>
+
+			<form id="message-input-form">
+				<input type="text" name="message-input">
+				<input type="submit" name="send" value="Send">
+			</form>
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block scripts %}
+	<script type="text/javascript" src="static/js/chats.js"></script>
+{% endblock %}

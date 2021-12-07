@@ -1,0 +1,243 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	background-color: yellow;
+	margin: 0;
+	overflow: auto;
+}
+
+nav ul {
+	margin: 0 30px 0 0;
+	float: right;
+	padding: 10px;
+}
+
+nav ul > * {
+	display: inline-block;
+	margin-right: 10px;
+	color: black;
+}
+
+nav li a {
+	text-decoration: none;
+}
+
+nav li a:hover {
+	text-decoration: underline;
+}
+
+
+#items-listing {
+	width: 1000px;
+	margin: auto;
+}
+
+.item {
+	width: 600px;
+	margin: 20px auto;
+	border: 1px solid black;
+	padding: 20px;
+	border-radius: 1%;
+}
+
+.item h3 {
+	font-size: 25px;
+	text-align: center;
+	margin: 10px 0;
+}
+
+.item-seller {
+	/*border: 1px solid red;*/
+	overflow: auto;
+	border-bottom: 1px solid lightgray;
+}
+
+.item-seller > * {
+	display: inline-block;
+	float: left;
+}
+
+.item-seller img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-left: 10px;
+	border: 2px solid darkorange;
+}
+
+.seller-info {
+	/*border: 1px solid blue;*/
+	height: 50px;
+	padding-top: 10px;
+	margin-left: 10px;
+}
+
+.seller-info > * {
+	margin: 0;
+}
+
+.item > img {
+	display: block;
+	width: 600px;
+	margin: 0 auto 10px auto;
+	border: 1px solid lightgray;
+	border-radius: 1%;
+}
+
+.item-actions {
+	margin-bottom: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.item-actions > * {
+	display: inline-block;
+	width: 280px;
+	text-align: center;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 8px;
+}
+
+.item-actions > *:hover {
+	background-color: white;
+	cursor: pointer;
+	background-color: orange;
+	transition-duration: 0.3s;
+	color: black;
+}
+
+#chat-section {
+	width: 1000px;
+	height: 500px;
+	border: 1px solid black;
+	margin: 60px auto 30px auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+#chat-section > * {
+	display: inline-block;
+}
+
+#chat-section h1 {
+	display: block;
+	text-align: center;
+	margin: 0;
+	padding: 5px 0;
+	font-size: 20px;
+	background-color: lightblue;
+}
+
+.messages-list {
+	width: 340px;
+	height: 500px;
+	border: 1px solid black;
+}
+
+.messages-display {
+	width: 655px;
+	height: 500px;
+	position: relative;
+	border: 1px solid black;
+}
+
+.message-head {
+	width: 320px;
+	padding: 10px;
+	border-bottom: 1px solid black
+}
+
+.selected {
+	background-color: lightgray;
+}
+
+.message-head:hover {
+	cursor: pointer;
+	background-color: lightgray;
+}
+
+.message-head > * {
+	display: inline-block;
+}
+
+.message-head h3 {
+	margin: 0 0 5px 0;
+}
+
+.message-head p {
+	margin: 0;
+	color: gray;
+}
+
+.message-head img {
+	width: 50px;
+}
+
+.message-head span {
+	vertical-align: top;
+}
+
+
+.message-line {
+	width: 95%;
+	margin: auto;
+	overflow: auto;
+}
+
+.message {
+	border-radius: 5px;
+	display: inline-block;
+	margin: 5px 0;
+	padding: 5px 10px;
+}
+
+.other-mes {
+	background-color: lightgray;
+	float: left;
+}
+
+.user-mes {
+	background-color: lightblue;
+	float: right;
+}
+
+#messages-detail {
+	height: 425px;
+	overflow-y: scroll;
+}
+
+#message-input-form {
+	padding: 5px 0;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+
+#message-input-form input[type='text'] {
+	margin-left: 5px;
+	width: 80%;
+	padding: 5px 5px;
+}
+
+#message-input-form input[type='submit'] {
+	padding: 5px 0;
+	width: 15%;
+}
+
+.no-message {
+	width: 100%;
+	height: 50%;
+	
+}
+
+.no-message h3 {
+	display: block;
+	text-align: center;
+	margin-top: 20%;
+}

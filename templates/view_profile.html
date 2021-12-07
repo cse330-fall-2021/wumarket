@@ -1,0 +1,73 @@
+<<<<<<< HEAD
+
+	{% block links %}
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/forms.css">
+	{% endblock %}
+=======
+{% extends "base.html" %}
+
+{% block links %}
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/forms.css">
+{% endblock %}
+>>>>>>> e0dae6532365561a984932263921832007c9fa05
+
+
+{% block content %}
+<div class="item">
+  <div class="item-seller" id="seller-profile">
+    <img src={{ profile.img_link}}>
+    <div class="seller-info" id="{{profile.id}}">
+      <h5> {{ profile.firstName}} {{ profile.lastName}}</h5>
+      <p> {{profile.bio}} </p>
+      <h5> Score: {{profile.score}} </h5>
+      {% if profile.id == current_id %}
+        <button id='edit-button'> Edit Profile </button>
+      {%endif%}
+    </div>
+  </div>
+</div>
+<section>
+{% for item in items %}
+		{% set seller = db.Users.find_one(item.seller_id) %}
+		<div class="item">
+			<div class="item-seller">
+				<img src={{ seller.img_link }}>
+				<div class="seller-info">
+					<h5> {{ seller.firstName + " " + seller.lastName }} </h5>
+					<p> {{ seller.title }} </p>
+				</div>
+			</div>
+			<h3> {{ item.title }} </h3>
+      {% if item.sold %}
+			<h5> This item has sold </h5>
+			{%endif%}
+			<h5> ${{ item.price }} </h5>
+			<img src={{ item.image_link }}>
+			<div class="item-description">
+				{{ item.description }}
+			</div>
+		</div>
+	{% endfor %}
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const editButton = document.getElementById("edit-button")
+  if (editButton != null) {
+    editButton.addEventListener('click', () => {
+      toEditForm(editButton.parentNode.id)
+  })
+  function toEditForm(id) {
+    window.location.pathname = "/edit_profile" + "/" + id
+  }
+}
+</script>
+{% endblock %}
+<<<<<<< HEAD
+=======
+
+>>>>>>> e0dae6532365561a984932263921832007c9fa05

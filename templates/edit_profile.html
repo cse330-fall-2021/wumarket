@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block links %}
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/forms.css">
+	{% endblock %}
+
+	{% block content %}
+
+	<form class="basic-form" method="POST">
+		<label> First Name
+			{{ form.firstName() }}
+		</label>
+		<label> Last Name
+			{{ form.lastName() }}
+		</label>
+		<label> Image Link
+			{{ form.img_link() }}
+		</label>
+		<label> Bio
+			{{ form.bio() }}
+		</label>
+    <label> Title
+			{{ form.title() }}
+		</label>
+		{{ form.submit }}
+	</form>
+	{% endblock %}

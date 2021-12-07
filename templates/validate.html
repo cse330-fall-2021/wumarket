@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Validate </title>
+	<link rel="stylesheet" type="text/css" href="static/css/forms.css">
+</head>
+<body>
+
+
+	<form class="basic-form" method="POST"> 
+		<label> Email
+			{{ form.email() }}
+		</label>
+		<label> Token 
+			{{ form.token() }}
+		</label>
+		{{ form.submit() }}
+		
+	</form>
+
+	
+
+</body>
+</html>

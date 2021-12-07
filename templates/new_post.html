@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<form class="basic-form" method="POST">
+		<label> Title
+			{{ form.title() }}
+		</label>
+		<label> Price
+			{{ form.price() }}
+		</label>
+		<label> Image Link
+			{{ form.image_link() }}
+		</label>
+		<label> Description
+			{{ form.description() }}
+		</label>
+		{{ form.submit }}
+	</form>
+
+{% endblock %}

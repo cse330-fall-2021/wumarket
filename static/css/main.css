@@ -1,0 +1,144 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	background-color: yellow;
+	margin: 0;
+	overflow: auto;
+}
+
+nav ul {
+	margin: 0 30px 0 0;
+	float: right;
+	padding: 10px;
+}
+
+nav ul > * {
+	display: inline-block;
+	margin-right: 10px;
+	color: black;
+}
+
+nav li a {
+	text-decoration: none;
+}
+
+nav li a:hover {
+	text-decoration: underline;
+}
+
+
+#items-listing {
+	width: 1000px;
+	margin: auto;
+}
+
+.item {
+	width: 600px;
+	margin: 20px auto;
+	border: 1px solid black;
+	padding: 20px;
+	border-radius: 1%;
+}
+
+.item h3 {
+	font-size: 25px;
+	text-align: center;
+	margin: 10px 0;
+}
+
+.item h4 {
+	font-size: 20px;
+	text-align: center;
+}
+
+.item-price {
+	color: green;
+}
+
+.item-seller {
+	/*border: 1px solid red;*/
+	overflow: auto;
+	border-bottom: 1px solid lightgray;
+}
+
+.item-seller > * {
+	display: inline-block;
+	float: left;
+}
+
+.item-seller img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-left: 10px;
+	border: 2px solid darkorange;
+}
+#seller-profile {
+	height: 100px
+}
+.seller-info {
+	/*border: 1px solid blue;*/
+	height: 50px;
+	padding-top: 10px;
+	margin-left: 10px;
+}
+
+.seller-info > * {
+	margin: 0;
+}
+
+.item > img {
+	display: block;
+	width: 600px;
+	margin: 0 auto 10px auto;
+	border: 1px solid lightgray;
+	border-radius: 1%;
+}
+
+.item-actions {
+	margin-bottom: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.item-actions > * {
+	display: inline-block;
+	width: 280px;
+	text-align: center;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 8px;
+}
+
+.item-actions .True {
+	background-color: orange;
+}
+
+.item-actions > *:hover {
+	background-color: white;
+	cursor: pointer;
+	background-color: orange;
+	transition-duration: 0.3s;
+	color: black;
+}
+.item-actions > *:hover {
+	background-color: white;
+	cursor: pointer;
+	background-color: orange;
+	transition-duration: 0.3s;
+	color: black;
+}
+
+.no-decor {
+	text-decoration: none;
+	color: black;
+}
+
+.no-decor::after {
+	color: black;
+}

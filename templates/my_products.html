@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="items-listing">
+
+	{% for item in items %}
+		{% set seller = db.Users.find_one(item.seller_id) %}
+		<div id={{ item._id }} class="item">
+			<div class="item-seller">
+				<img src={{ seller.img_link }}>
+				<div class="seller-info">
+					<h5> {{ seller.firstName + " " + seller.lastName }} </h5>
+					<p> {{ seller.title }} </p>
+				</div>
+			</div>
+			<h3> {{ item.title }} </h3>
+      {% if item.sold %}
+			<h5> This item has sold </h5>
+			{%endif%}
+      <h5> ${{ item.price }} </h5>
+			<img src={{ item.image_link }}>
+			<div class="item-actions">
+				<div class="edit" name="message-action"> Edit </div>
+				<div class="delete" name="favorite-action"> Delete </div>
+			</div>
+			<div class="item-description">
+				{{ item.description }}
+			</div>
+		</div>
+	{% endfor %}
+</section>
+
+<script>
+  const editDivs = document.getElementsByClassName("edit");
+  const deleteDivs = document.getElementsByClassName("delete");
+
+  for (let i=0; i<editDivs.length; i++) {
+    console.log('hello!')
+    editDivs[i].addEventListener('click', () => {
+      console.log('clicked:' + editDivs[i].parentNode.parentNode.id)
+      toEditForm(editDivs[i].parentNode.parentNode.id)
+    })
+  }
+
+  for (let i=0; i<deleteDivs.length; i++) {
+    console.log('hello!')
+    deleteDivs[i].addEventListener('click', () => {
+      console.log('clicked:' + deleteDivs[i].parentNode.parentNode.id)
+      toDeleteForm(deleteDivs[i].parentNode.parentNode.id)
+    })
+  }
+  // deleteDivs.addEventListener('click', toDeleteForm);
+
+  function toEditForm(id) {
+    window.location.pathname = "/edit_product" + "/" + id
+  }
+
+  function toDeleteForm(id) {
+    window.location.pathname = "/delete_product" + "/" + id
+  }
+</script>
+{% endblock %}
+
+
+

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<form class="basic-form" method="POST"> 
+		<label> First Name
+			{{ form.firstName() }}
+		</label>
+		<label> Last Name
+			{{ form.lastName() }}
+		</label>
+		<label> Password 
+			{{ form.password() }}
+		</label>
+		<label> Email 
+			{{ form.email() }}
+		</label>
+		{{ form.submit() }}
+	</form>
+
+</body>
+</html>
+
+{% endblock %}

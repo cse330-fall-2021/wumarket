@@ -26,19 +26,19 @@ II. Rubric.
 
 - 10 points: Learn and Use Flask
 - 10 points: Learn and Use MongoDB
-**- 5 points: Learn and Use Gunicorn**
+- 5 points: Learn and Use Gunicorn
 
 2. Functionality (60 points)
 
 - 10 points: User must register with Wash U email, a verification email will be sent.
 
-- 10 points: User can log in/out, **have a profile with their bio, info, etc., which they can edit.**
+- 10 points: User can log in/out, have a profile with their bio, info, etc., which they can edit.
 
 - 10 points: The main page displays products to sell/trade with title, price range, etc.
 
-- 10 points: **User can message other users about a certain product.**
+- 10 points: User can message other users about a certain product.
 
-- 10 points: **Products can be edited, added, deleted by seller, marked as sold**
+- 10 points: Products can be edited, added, deleted by seller, marked as sold
 
 - 10 points: Database contains Users, Products, Messages with the necessary columns and column types to maintain the above functionality
 
@@ -50,4 +50,4 @@ II. Rubric.
 
 4. Creative portion (5 points)
 
-**- Users can favorite products**
+- Users can favorite products
